@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Popover, Button } from 'antd';
+import { Card, Popover, Button } from 'antd';
 const { Meta } = Card;
 
 export class ListViewer extends React.Component {
@@ -13,9 +13,14 @@ export class ListViewer extends React.Component {
         let movieList = this.props.movieList;
         let movies = movieList.data.movies;
 
-        const content = (content) => (
+        const details = (movie) => (
             <div>
-                <p>{content}</p>
+                <p><b>IMDB Rating:  </b> {movie.rating}</p>
+                <p><b>Release:  </b> {movie.year}</p>
+                <p><b>Duration:  </b> {movie.runtime > 0 ? movie.runtime : '-'} min.</p>
+                <p><b>Genres:  </b> {movie.genres.join(', ')}</p>
+                <p><b>Language:  </b> {movie.language}</p>
+                <p><b>Synopsis:  </b> {movie.synopsis}</p>
             </div>
         );
 
@@ -25,35 +30,31 @@ export class ListViewer extends React.Component {
                 <Button>{torrents[1].quality}</Button>
             </div>
         );
-
-        const downloadButton = (urls) => (
-            <Popover content={content(urls[0])} title={urls[1]}>
-                <Button type="default">Summary</Button>
-            </Popover>
-        );
         
-
         let summaryList = movies.map(movie => {
             return (
                 <Card className="List" key={movie.id}
                     hoverable
                     style={{ width: 240 }}
-                    cover={<img src={movie.medium_cover_image} alt={movie.title} />}
+                    cover={<img src={movie.medium_cover_image} alt={movie.title_english} />}
                 >
 
-                    <Meta title={movie.title}/>
+                    <Meta title={movie.title} />
 
-                    <br/>
+                    <br />
 
-                    <Popover content={content(movie.summary)} title={movie.title}>
-                        <Button type="default">Summary</Button>
+                    <Popover content={details(movie)} title={movie.title_long}>
+                        <Button type="default">Details</Button>
                     </Popover>
 
-                    <Popover content={downloaderView(movie.torrents)} title={movie.title}>
+                    <Popover content={downloaderView(movie.torrents)} title={movie.title_long}>
                         <Button type="default">Download</Button>
                     </Popover>
 
-                </Card>);
+                </Card>
+
+            );
+
         })
 
         return (
@@ -65,5 +66,3 @@ export class ListViewer extends React.Component {
 }
 
 
-// download torrent
-// fix the summary issue

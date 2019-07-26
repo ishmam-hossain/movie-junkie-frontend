@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import { ListViewer } from './components/ListViewer'
+import { ListViewer } from './components/ListViewer';
+import {LoadingScreen} from './components/Loader';
 
 
 
@@ -51,9 +52,9 @@ class App extends Component {
 
     else {
       return (
-        <div>
-          NO data
-        </div>
+        <div className="Spinner-logo">
+          <LoadingScreen/> 
+      </div>
       );
     }
   }
