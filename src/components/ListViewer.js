@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Popover, Button } from 'antd';
+import { Card, Popover, Button, Row, Col } from 'antd';
 const { Meta } = Card;
 
 export class ListViewer extends React.Component {
@@ -17,7 +17,7 @@ export class ListViewer extends React.Component {
             <div>
                 <p><b>IMDB Rating:  </b> {movie.rating}</p>
                 <p><b>Release:  </b> {movie.year}</p>
-                <p><b>Duration:  </b> {movie.runtime > 0 ? movie.runtime : '-'} min.</p>
+                <p><b>Duration:  </b> { movie.runtime > 0 ? `${movie.runtime} min.` : '-'}</p>
                 <p><b>Genres:  </b> {movie.genres.join(', ')}</p>
                 <p><b>Language:  </b> {movie.language}</p>
                 <p><b>Synopsis:  </b> {movie.synopsis}</p>
@@ -59,10 +59,15 @@ export class ListViewer extends React.Component {
 
         return (
             <div className="ListViewer">
-                <div>{summaryList}</div>
+                {/* <div>{summaryList}</div> */}
+                <Row>
+                    <Col span={6}>{summaryList.slice(0, 5)}</Col>
+                    <Col span={6}>{summaryList.slice(5, 10)}</Col>
+                    <Col span={6}>{summaryList.slice(10, 15)}</Col>
+                    <Col span={6}>{summaryList.slice(15, 20)}</Col>
+
+                </Row>
             </div>
         );
     }
 }
-
-
