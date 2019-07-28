@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { ListViewer } from './components/ListViewer';
 import {LoadingScreen} from './components/Loader';
-
+import { SearchBar } from './components/Search';
 
 
 class App extends Component {
@@ -43,6 +43,7 @@ class App extends Component {
       let movieList = this.state.data;
       return (
         <div>
+          <SearchBar/>
           <ListViewer
               movieList={movieList}
           />

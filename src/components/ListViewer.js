@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Popover, Button, Row, Col } from 'antd';
 const { Meta } = Card;
 
+
 export class ListViewer extends React.Component {
 
     downloadTorrent(downloadUrl) {
@@ -20,7 +21,7 @@ export class ListViewer extends React.Component {
                 <p><b>Duration:  </b> { movie.runtime > 0 ? `${movie.runtime} min.` : '-'}</p>
                 <p><b>Genres:  </b> {movie.genres.join(', ')}</p>
                 <p><b>Language:  </b> {movie.language}</p>
-                <p><b>Synopsis:  </b> {movie.synopsis}</p>
+                {/* <p><b>Synopsis:  </b> {movie.synopsis}</p> */}
             </div>
         );
 
